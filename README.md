@@ -1,3 +1,5 @@
+# Diabetes Progression Prediction with Linear Regression
+
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/) 
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-0.24%2B-f7931e?logo=scikit-learn&logoColor=white)](https://scikit-learn.org/stable/) 
 [![seaborn](https://img.shields.io/badge/seaborn-0.11%2B-4c8cbf?logo=seaborn&logoColor=white)](https://seaborn.pydata.org/) 
@@ -20,10 +22,9 @@ All metrics, plots, and outputs are available in the linked Kaggle notebook for 
 ## 📑 Table of Contents
 - [Live Results](#-live-results)
 - [Table of Contents](#-table-of-contents)
-- [Project Structure](#-project-structure)
 - [Overview](#-overview)
-- [Key Features](#-key-features)
-- [Requirements](#-requirements)
+- [Project Structure](#-project-structure)
+- [Features](#-features)
 - [Quickstart](#-quickstart)
 - [Usage](#-usage)
 - [Results](#-results)
@@ -54,74 +55,32 @@ Linear Regression/
 └── .venv/             # (Optional) Virtual environment directory
 ```
 
-- **LR.ipynb:** Main notebook with all code, EDA, modeling, and results
-- **README.md:** Project documentation
-- **requirements.txt:** Python dependencies
-- **LICENSE:** MIT License
-- **.venv/:** (Optional) Virtual environment
-
 ---
 
 ## 🚀 Features
 
 ### Data Preparation
-- **Dataset Loading**: Automatic download and loading of the CIFAR-10 dataset
+- **Dataset Loading**: Uses the scikit-learn diabetes dataset (10 physiological features, 442 patients)
+- **Exploratory Data Analysis (EDA)**: Statistical summaries, correlation analysis, and visualizations (histograms, pairplots, heatmaps)
 - **Preprocessing**:
-  - Image normalization (pixel values scaled to [0, 1])
-  - One-hot encoding of class labels
-  - Train/validation/test split (80%/10%/10%)
+  - Feature selection (all 10 baseline variables)
+  - Standardization of features
+  - Train/test split (80%/20%)
 
-### Model Architecture
-- **Convolutional Layers**: Multiple Conv2D layers with ReLU activation
-- **Batch Normalization**: For faster convergence and stable training
-- **Pooling Layers**: MaxPooling2D for dimensionality reduction
-- **Regularization**: Dropout layers to prevent overfitting
-- **Dense Layers**: Fully connected layers for classification
-- **Output Layer**: Softmax activation for multi-class classification
+### Modeling
+- **Linear Regression (Closed-Form Solution)**: Utilizes scikit-learn's `LinearRegression` for the normal equation approach
+- **Custom Gradient Descent Implementation**: Implements linear regression from scratch using gradient descent for educational comparison
+- **Pipeline**: Combines scaling and modeling for reproducibility
 
-### Training Process
-- **Optimizer**: Adam with default parameters
-- **Loss Function**: Categorical Cross-Entropy
-- **Callbacks**:
-  - Early Stopping: Halts training when validation loss stops improving
-  - Model Checkpoint: Saves the best model based on validation accuracy
+### Evaluation & Interpretation
+- **Metrics**: Mean Absolute Error (MAE), Mean Squared Error (MSE), Root Mean Squared Error (RMSE), R² (coefficient of determination)
+- **Cross-Validation**: 5-fold cross-validation to assess model stability
+- **Baseline Comparison**: Dummy regressor for baseline performance
+- **Feature Importance**: Coefficient analysis and bar chart visualization
+- **Residual Analysis**: Residual plots and predicted vs. actual scatter plots
 
-### Evaluation & Visualization
-- **Metrics**: Accuracy, Loss, Precision, Recall, F1-Score
-- **Visualizations**:
-  - Training/Validation accuracy and loss curves
-  - Confusion matrix
-  - Sample predictions with true vs. predicted labels
+*All plots include descriptive titles, axis labels, and are designed for accessibility.*
 
----
-
-## ⚙️ Requirements
-- Python 3.8+
-- Jupyter Notebook
-- numpy
-- pandas
-- matplotlib
-- seaborn
-- scikit-learn
-
-**Recommended:** Use a virtual environment for isolation and reproducibility.
-
-Create and activate a virtual environment:
-- **Windows:**
-  ```bash
-  python -m venv .venv
-  .venv\Scripts\activate
-  ```
-- **macOS/Linux:**
-  ```bash
-  python3 -m venv .venv
-  source .venv/bin/activate
-  ```
-
-Install all dependencies with:
-```bash
-pip install -r requirements.txt
-```
 
 ---
 
